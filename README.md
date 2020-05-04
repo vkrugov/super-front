@@ -12,3 +12,11 @@ npm install
 ```
 npm run serve
 ```
+
+(open Created url)
+
+### Use this params to Login as Admin:
+```
+email: admin@test.co
+password: 111111
+```
