@@ -1,7 +1,7 @@
 <template>
     <div v-if="galleryHero !== 0">
         <h1>
-            Gallery
+           Super Gallery
         </h1>
         <div v-if="gallery">
             <div class="gallery-list">
@@ -36,7 +36,6 @@
                 </b-form-group>
                 <div class="text-left">
                     <b-button type="submit" class="bg-success">Upload New Image</b-button>
-                    .
                 </div>
             </b-form>
         </div>
@@ -89,6 +88,7 @@
         background-color: #ff5b5b;
         padding: 10px;
         border-radius: 5px;
+        margin-top: 10px;
     }
 
     .gallery-list {

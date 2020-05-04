@@ -1,5 +1,17 @@
 <template>
     <div>
+        <h3>
+            It is test task, so you can use:
+        </h3>
+        <h5>
+            email: admin@test.co
+        </h5>
+        <h5>
+            password: 111111
+        </h5>
+        <p>
+            after login you can create new admin user or delete one
+        </p>
         <b-form @submit.prevent="signIn">
             <b-form-group label="Email" class="text-left">
                 <b-form-input

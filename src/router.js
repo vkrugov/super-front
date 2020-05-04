@@ -13,6 +13,22 @@ import UpdateHero from "./pages/UpdateHero";
 Vue.use(VueRouter);
 import {USER_LOAD} from "./store/actions/auth.actions";
 
+const isAuthenticated = (to, from, next) => {
+    if (store.getters.isAuthenticated) {
+        next();
+        return;
+    }
+    next('/');
+};
+
+const isNotAuthenticated = (to, from, next) => {
+    if (!store.getters.isAuthenticated) {
+        next();
+        return
+    }
+    next('/dashboard');
+};
+
 const router =  new VueRouter ({
     routes: [
         {
@@ -29,11 +45,13 @@ const router =  new VueRouter ({
                     path: '/new-hero',
                     component: NewHero,
                     name: 'newHero',
+                    beforeEnter: isAuthenticated,
                 },
                 {
                     path: '/update-hero',
                     component: UpdateHero,
                     name: 'updateHero',
+                    beforeEnter: isAuthenticated,
                 },
                 {
                     path: '/gallery',
@@ -45,12 +63,14 @@ const router =  new VueRouter ({
         {
             path: '/login',
             component: Login,
-            name: 'login'
+            name: 'login',
+            beforeEnter: isNotAuthenticated
         },
         {
             path: '/users',
             component: Users,
             name: 'users',
+            beforeEnter: isAuthenticated,
             children: [
                 {
                     path: '/register',

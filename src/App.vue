@@ -30,7 +30,8 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    background-color: #182834;
+    color: #eff7fd;
   }
   .success-uploaded {
     padding: 20px;
@@ -60,7 +61,7 @@ export default {
     text-decoration: none;
     background-color: #e52727;
   }
-  .btn-danger, .btn-success, .btn-info {
+  button {
     border: none!important;
     border-radius: 5px;
     padding: 7px;

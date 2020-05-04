@@ -1,7 +1,10 @@
 <template>
     <div>
         <div id="heroes">
-            <div v-if="user.id != null" class="new-hero-block" @click="focusChild">
+            <div id="child-view">
+                <router-view></router-view>
+            </div>
+            <div v-if="user.id != null" class="new-hero-block">
                 <router-link class="new-hero-link" to="new-hero">Add New Super Hero</router-link>
             </div>
             <div v-if="heroesSuccess">
@@ -55,6 +58,10 @@
                                     {{ hero.catch_phrase }}
                                 </div>
                                 <div>
+                                    <div class="font-weight-bold">Description:</div>
+                                    {{ hero.origin_description }}
+                                </div>
+                                <div>
                                     <div class="font-weight-bold">Last Updater:</div>
                                     {{ hero.last_updater }}
                                 </div>
@@ -81,9 +88,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="child-view">
-                <router-view></router-view>
             </div>
         </div>
     </div>
@@ -126,22 +130,16 @@
                 this.$store.dispatch(GET_HERO_TO_UPDATE)
                     .then(() => {
                         this.$router.push("/update-hero");
-                        this.focusChild();
                     })
             },
             deleteHero(event) {
                 this.$store.state.hero.heroToAction = event.target.dataset.id;
                 this.$store.dispatch(DELETE_HERO);
             },
-            focusChild() {
-                var child = document.getElementById('child-view');
-                child.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-            },
             showGallery(event) {
                 this.$store.state.hero.heroToAction = event.target.dataset.id;
                 this.$store.dispatch(GET_GALLERY).then(() => {
                     this.$router.push("/gallery");
-                    this.focusChild();
                 });
             }
         },
@@ -195,7 +193,7 @@
     }
 
     .new-hero-block {
-        text-align: left;
+        text-align: right;
         margin-top: 20px;
     }
 

@@ -121,18 +121,17 @@
         methods: {
             submitHero() {
                 var formData = this.setFormData();
-                this.$store.dispatch(SUBMIT_HERO, formData).then((response) => {
-                    console.log(response)
-                    this.$router.push("/gallery");
+                this.$store.dispatch(SUBMIT_HERO, formData).then(() => {
+                    this.$router.push("/heroes");
                 })
             },
             setFormData() {
                 const fd = new FormData();
-                fd.append('id', this.hero.id)
+                fd.append('id', this.hero.id || '')
                 fd.append('nickname', this.hero.nickname)
                 fd.append('real_name', this.hero.real_name)
-                if (this.hero.avatar) {
-                    fd.append('avatar', this.hero.avatar, this.hero.avatar.fileName)
+                if (this.hero.avatar && this.hero.avatar.name) {
+                        fd.append('avatar', this.hero.avatar, this.hero.avatar.fileName)
                 }
                 fd.append('origin_description', this.hero.origin_description)
                 fd.append('catch_phrase', this.hero.catch_phrase)
